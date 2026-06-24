@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Планы на день</title>
+</head>
+<body>
+
+  <main class="board">
+
+    <header class="board__header">
+      <p class="board__eyebrow">Сегодня, <span id="today-date"></span></p>
+      <h1 class="board__title">Что нужно сделать</h1>
+    </header>
+
+    <form class="todo" id="todo-form">
+      <div class="todo__row">
+        <input
+          id="todo-action"
+          class="todo__input todo__input--action"
+          type="text"
+          placeholder="Какие-то дела..."
+          autocomplete="off"
+        >
+        <input
+          id="todo-time"
+          class="todo__input todo__input--time"
+          type="time"
+          placeholder="06:30"
+        >
+      </div>
+      <button type="submit" class="todo__button">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M450-450H230v-60h220v-220h60v220h220v60H510v220h-60v-220Z"/></svg>
+        Добавить дело
+      </button>
+    </form>
+
+    <section class="panel">
+
+      <div class="panel__bar">
+        <div class="filters" role="tablist" aria-label="Фильтр задач">
+          <button class="filters__btn is-active" data-filter="all" role="tab" aria-selected="true">Все</button>
+          <button class="filters__btn" data-filter="active" role="tab" aria-selected="false">Активные</button>
+          <button class="filters__btn" data-filter="done" role="tab" aria-selected="false">Готово</button>
+        </div>
+        <p class="panel__count" id="todo-count">0 дел</p>
+      </div>
+
+      <ul class="list" id="todo-list" aria-live="polite"></ul>
+
+      <div class="empty" id="empty-state">
+        <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="currentColor"><path d="M382-240 154-468l57-57 171 171 369-369 57 57-426 426Z"/></svg>
+        <p class="empty__title">Пока всё спокойно</p>
+        <p class="empty__text">Добавьте первое дело выше — оно появится здесь.</p>
+      </div>
+
+      <footer class="panel__footer" id="panel-footer">
+        <span id="done-count">0 выполнено</span>
+        <button class="panel__clear" id="clear-done" type="button">Очистить выполненные</button>
+      </footer>
+
+    </section>
+
+  </main>
+
+  <template id="item-template">
+    <li class="item" data-id="">
+      <button class="item__status" type="button" aria-label="Отметить выполненным"></button>
+      <div class="item__body">
+        <p class="item__text"></p>
+        <p class="item__time"></p>
+      </div>
+      <div class="item__tools">
+        <button class="item__edit" type="button" aria-label="Редактировать">
+          <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
+        </button>
+        <button class="item__remove" type="button" aria-label="Удалить">
+          <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+        </button>
+      </div>
+    </li>
+  </template>
+
+  <script src="index.js"></script>
+</body>
+</html>
